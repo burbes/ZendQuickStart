@@ -1,0 +1,16 @@
+@charset 'UTF-8';
+
+h1 { margin:1em}
+
+/* 
+    Document   : ver
+    Created on : 13/09/2013, 01:39:04
+    Author     : Naelson Matheus
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+

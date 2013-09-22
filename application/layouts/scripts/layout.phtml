@@ -1,0 +1,38 @@
+<?php echo $this->Doctype(); /* DOCTYPE AT BOOTSTRAP */ ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset = 'UTF8'" />
+        <?php
+        /* TITULO */
+        echo $this->headTitle();
+
+        /* especificar um arquivo */
+        //echo $this->headLink();//->appendStylesheet('/css/style.css'); 
+
+        /* CSS */
+        echo $this->headLink();
+
+        /* JS */
+        echo $this->headScript();
+        ?>
+
+    </head>
+    <body>
+
+        <!-- TITULO PROJETO -->
+        <h1>Projeto Zend FrameWork</h1>
+
+        <?php echo $this->layout()->content; /* CONTEUDO DO SITE */ ?>
+
+        <!-- RODAPÉ DO SITE -->
+        <div id="rodape">
+            <ul>
+                <li> Item one </li>
+                <li> Item two </li>
+            </ul>
+        </div>
+        <!-- FIM RODAPÉ DO SITE -->
+    </body>
+</html>

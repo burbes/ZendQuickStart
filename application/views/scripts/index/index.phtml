@@ -1,0 +1,22 @@
+<h1><?php echo $this->titulo; /* Titulo definido na controller */ ?></h1>
+
+<?php
+
+/* LISTANDO UMA CONSULTA FEITA NA CONTROLLER */
+foreach ($this->usuarios as $usuario) :
+    ?>
+
+    <?php // echo 'Nome: '.$usuario['usuario']; ?>  
+
+    <?php 
+    /* imprimindo o nome */
+    echo 'Nome: ' . $usuario->nome.'<br/>';
+    echo 'Email: ' . $usuario->email.'<br/>';
+
+    /* pulando linha */
+    echo "<br/>";
+    ?>  
+
+<?php endforeach; ?>
+
+<br/>
