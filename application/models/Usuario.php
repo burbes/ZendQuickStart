@@ -3,7 +3,10 @@
 class Application_Model_Usuario extends Zend_Db_Table /* extensão do db */ {
 
     protected $_name = 'tb_usuario';
+    protected $_fkname = 'tb_contato';
     protected $_primary = 'id';
+    protected $_dependentTables = Array('Application_Model_Contato');
+    
 
     public function listar($id = null) {
         try {
@@ -71,10 +74,11 @@ class Application_Model_Usuario extends Zend_Db_Table /* extensão do db */ {
                 //->where("id = ?",$id)
                 //->from($this->_name, Array('idUsuario' => 'id', 'nome')) /* exemplo de alias p/ colunas */
                 ->from(Array('usu'=>$this->_name), Array('id'))
-                ->setIntegrityCheck(false) /* false significa  */
-                ->join(Array('con'=> 'tb_contato'),'con.fk_usuario=usu.id',Array('Telefone','Celular')) /* Lista somente o Telefone e Celular */
-                ->columns(Array('nomeUsuario' => 'nome','email'))
+                ->setIntegrityCheck(false) /* pode listar as colunas  */
+                ->join(Array('con'=> $this->_fkname),'con.fk_usuario=usu.id',Array('Telefone','Celular')) /* Lista somente o Telefone e Celular */
+                ->columns(Array('nomeUsuario' => 'nome','Email'))
                 ->order("id desc")
+                ->group("usu.id")
                 ->limit(5);
         echo $sql;
         return $this->fetchAll($sql)->toArray();

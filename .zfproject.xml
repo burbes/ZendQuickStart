@@ -24,6 +24,7 @@
       </layoutsDirectory>
       <modelsDirectory>
         <modelFile modelName="Usuario"/>
+        <modelFile modelName="Contato"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

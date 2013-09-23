@@ -78,7 +78,14 @@ class IndexController extends Zend_Controller_Action {
 
         /* instancia o model Usuario */
         $usuario = new Application_Model_Usuario();
-
+        
+        /* retorna apenas 1 registro */
+        //$usuario->fetchAll('id=3')->current();
+        $find = $usuario->find(3)->current();
+        $contato = $find->findDependentRowset('Application_Model_Contato');
+        $this->view->contato = $contato;
+        $this->view->usuario = $find;
+        
         /* chama o metodo listar */
         $rows = $usuario->listar();
 
@@ -95,7 +102,7 @@ class IndexController extends Zend_Controller_Action {
         /* DELETAR */
         //$delete = $usuario->delete(7);
 
-        $sql = $usuario->sql(3);
+        $sql = $usuario->sql();
         
         var_dump($sql);
         
