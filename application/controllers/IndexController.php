@@ -77,14 +77,27 @@ class IndexController extends Zend_Controller_Action {
         //$rows = $db->fetchAll('select * from tb_usuario');
 
         /* instancia o model Usuario */
-        $usuario = new Application_Model_Usuario();
         
+         $usuario = new Application_Model_Usuario();
         /* retorna apenas 1 registro */
         //$usuario->fetchAll('id=3')->current();
-        $find = $usuario->find(3)->current();
-        $contato = $find->findDependentRowset('Application_Model_Contato');
+        /* 
+         $find = $usuario->find(3)->current();
+         $contato = $find->findDependentRowset('Application_Model_Contato');
+         */
+        $model = new Application_Model_Contato();
+        $contato = $model->find(1);
+        $find = $contato->current()->findParentRow('Application_Model_Usuario');
+        
+        $postModel = new Application_Model_Post();
+        $post = $postModel->find(1)->current();
+        $tags = $post->findManyToManyRowset('Application_Model_Tags','Application_Model_AssocTags');
+        
+        
         $this->view->contato = $contato;
         $this->view->usuario = $find;
+        $this->view->post = $post;
+        $this->view->tags = $tags;
         
         /* chama o metodo listar */
         $rows = $usuario->listar();

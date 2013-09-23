@@ -25,6 +25,9 @@
       <modelsDirectory>
         <modelFile modelName="Usuario"/>
         <modelFile modelName="Contato"/>
+        <modelFile modelName="Post"/>
+        <modelFile modelName="Tags"/>
+        <modelFile modelName="AssocTags"/>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
       <servicesDirectory enabled="false"/>

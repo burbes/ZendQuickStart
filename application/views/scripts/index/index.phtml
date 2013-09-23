@@ -28,7 +28,26 @@ if (count($this->contato) > 0):
         Telefone: <?php echo $contato->telefone; ?>  
         <br/>
         Celular: <?php echo $contato->celular; ?>  
+        <br/>
         <?php
     endforeach;
 endif;
 ?>    
+<br/>
+
+<hr></hr>
+
+Titulo: <?php $this->post->titulo ?>
+<br/>
+Texto: <?php $this->post->texto ?>
+<br/>
+Tags: 
+<?php
+if (count($this->tags) > 0):
+    foreach ($this->tags as $tags) :
+        echo $tags->nome . ',';
+    endforeach;
+endif;
+?>
+
+

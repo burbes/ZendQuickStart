@@ -69,7 +69,7 @@ class Application_Model_Usuario extends Zend_Db_Table /* extensão do db */ {
         }
     }
 
-    public function sql($id) {
+    public function sql(/* $id */) {
         $sql = $this->select()
                 //->where("id = ?",$id)
                 //->from($this->_name, Array('idUsuario' => 'id', 'nome')) /* exemplo de alias p/ colunas */
