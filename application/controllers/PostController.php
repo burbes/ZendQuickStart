@@ -30,6 +30,8 @@ class PostController extends Zend_Controller_Action {
                 /* PEGA OS VALORES */
                 $data = $form->getValues();
                 //var_dump($data);
+
+                /* CASO ATUALIZAR */
                 if ($id) {
                     /* FILTRA POR ID */
                     $where = $model->getAdapter()->quoteInto('id = ?', $id);
@@ -37,8 +39,8 @@ class PostController extends Zend_Controller_Action {
                     /* ATUALIZA */
                     $model->update($data, $where);
                 }
-
-                $model->insert($data);
+                else
+                    $model->insert($data);
 
                 $this->_redirect('/post');
             }
@@ -52,7 +54,7 @@ class PostController extends Zend_Controller_Action {
                 /* SETA A ACTION EM ESPECIFICO P/ ESSA PAGINA 
                  * ISSO É USADAO P/ PODER FAZER O UPDATE */
                 $form->setAction('/post/add/id/' . $id);
-                
+
                 /* POPULA O FORMULARIO */
                 $form->populate($data);
 

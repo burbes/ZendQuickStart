@@ -1,5 +1,27 @@
+<form action ="<?php echo $this->form->getAction() ?>" method="<?php echo $this->form->getMethod(); ?>" >
+    <div>Titulo</div>
+    <fieldset>
+        <legend>Meu Formulario</legend>
+        <br/>
+        
+        <!-- Exibe apenas o Label do elemento -->
+        <div><?php echo $this->form->titulo->getLabel(); ?>   </div>
+        <br/>
+        
+        <!-- Exibe o elemento Titulo (Input + Label)-->
+        <div><?php echo $this->form->titulo; ?>   </div>
+        <br/>
+        
+        <!-- Exibe o elemento Textarea -->
+        <div><?php echo $this->form->texto; ?>   </div>
+        <br/>
+        
+        <!-- Exibe o elemento submit enviar -->
+        <div><?php echo $this->form->Enviar; ?>   </div>
+        <br/>
+    </fieldset>
+</form>
 <?php
-
 /* Exibe na view o formulario */
-echo $this->form;
+//echo $this->form;
 ?>    
