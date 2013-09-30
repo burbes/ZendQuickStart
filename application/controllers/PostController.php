@@ -8,6 +8,49 @@ class PostController extends Zend_Controller_Action {
 
     public function indexAction() {
         // action body
+
+        /* PAGINAÇÃO */
+        
+        /* fazer nos model isso */
+        $post = new Application_Model_Post;
+        $select = $post->select()->order('id Desc');
+        /* fim - fazer nos model isso */
+        
+        $data = range(1, 100);
+
+        /* adaptador */
+        //$adapter = new Zend_Paginator_Adapter_Array($data);
+
+        /* 1 forma de instanciar */
+        //$paginator = new Zend_Paginator($adapter);
+        
+        /* 2 forma de instanciar - não precisa de adaptador */
+        $paginator = Zend_Paginator::factory($select /* ou $data */);
+        
+        /* 
+         * determina uma variavel p/ diferenciar as paginas
+         * CONTROLER/?page=5
+         *  */
+        $paginator->setCurrentPageNumber($this->_getParam('page'));
+        
+        /* qtde de itens por pagina */
+        $paginator->setItemCountPerPage(2);
+        
+        /* qtde de paginas que poderão ser clicadas */
+        $paginator->setPageRange(5);
+        
+        /* estilo de rolamento */
+        $paginator->setDefaultScrollingStyle('Elastic');
+        
+        /*  */
+        Zend_View_Helper_PaginationControl::setDefaultViewPartial('paginator_control.phtml');
+
+        /*  exibe na view */
+        $this->view->paginator = $paginator;
+        
+        
+        
+        
     }
 
     /* FUNÇÃO P/ ADICIONAR UM POST NO BANCO */

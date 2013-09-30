@@ -1,4 +1,9 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>Post</b> and script/action name <b>index</b></p>
-</div>
+<?php
+/* paginação */
+foreach ($this->paginator as $pagi) {
+    echo "{$pagi['titulo']}<hr>";
+}
+?>    
+<br/><br/>
+<?php //echo $this->paginatiorControl($this->paginator, 'Sliding'/* estilo de paginação */, 'paginator_control.phtml'); ?>
+<?php echo $this->paginator; ?>
