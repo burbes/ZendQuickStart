@@ -2,8 +2,13 @@
 /* paginação */
 foreach ($this->paginator as $pagi) {
     echo "{$pagi['titulo']}<hr>";
+    //echo "{$pagi}<hr>";
 }
 ?>    
 <br/><br/>
-<?php //echo $this->paginatiorControl($this->paginator, 'Sliding'/* estilo de paginação */, 'paginator_control.phtml'); ?>
-<?php echo $this->paginator; ?>
+
+<?php
+/* PAGINAÇÃO */
+//echo $this->paginationControl($this->paginator, 'Sliding'/* estilo de paginação */, 'paginator_control.phtml'); /* Melhor instanciano no postcontroller */
+echo $this->paginator; //OUTRA FORMA */
+?>

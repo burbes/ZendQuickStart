@@ -11,21 +11,22 @@ class PostController extends Zend_Controller_Action {
 
         /* PAGINAÇÃO */
         
-        /* fazer nos model isso */
+        /* melhor fazer  isso nos model isso */
         $post = new Application_Model_Post;
         $select = $post->select()->order('id Desc');
-        /* fim - fazer nos model isso */
+        /* fim - melhor fazer isso nos model isso */
         
-        $data = range(1, 100);
+        /* array de 1 a 100 */
+        //$data = range(1, 100);
 
-        /* adaptador */
+        /* 1 forma de instanciar  - adaptador */
         //$adapter = new Zend_Paginator_Adapter_Array($data);
 
-        /* 1 forma de instanciar */
+        /* 1 forma de instanciar  - instancia */
         //$paginator = new Zend_Paginator($adapter);
         
         /* 2 forma de instanciar - não precisa de adaptador */
-        $paginator = Zend_Paginator::factory($select /* ou $data */);
+        $paginator = Zend_Paginator::factory($select   /*ou  $data */);
         
         /* 
          * determina uma variavel p/ diferenciar as paginas
@@ -42,7 +43,7 @@ class PostController extends Zend_Controller_Action {
         /* estilo de rolamento */
         $paginator->setDefaultScrollingStyle('Elastic');
         
-        /*  */
+        /* determina o arquivo default de paginação */
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('paginator_control.phtml');
 
         /*  exibe na view */

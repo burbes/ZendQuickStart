@@ -22,33 +22,49 @@
 if ($this->pageCount) {
     ?>
     <div id="paginator">
-        <? if (isset($this->previous)) { ?>
+        <?php
+        /* PRIMEIRA PAGINA */
+        if (isset($this->previous)) :
+            ?>
             <a href="<?php echo $this->url(array('page' => $this->first)); ?>">Primeira</a>
-            <?
-        };
-        if (isset($this->previous)) {
+            <!-- <a href="/post/?page=1">Primeira</a> -->
+            <!-- <a href="/post/?page=<?php echo $this->first ?>">Primeira</a> -->
+            <?php
+        endif;
+
+        /* SETA < */
+        if (isset($this->previous)) :
             ?>
             <a href="<?php echo $this->url(array('page' => $this->previous)); ?>"> < </a>
-            <?
-        };
-        foreach ($this->pagesInRange as $page) {
-            if ($this->current == $page) {
+            <!-- <a href="/post/?page=<?php //echo $this->previous  ?>"> < </a> -->
+            <?php
+        endif;
+
+        /* IMPRIME OS NUMEROS DA PAGINAÇÃO */
+        foreach ($this->pagesInRange as $page) :
+
+            if ($this->current == $page):
                 ?>
                 <strong class="current"><?php echo $page ?></strong>
-            <? } else { ?>
-                <a href="/post/?page=<? $page ?>"><?php echo $page ?></a>
-            <? }; ?>
-            <?
-        };
+                <?php
+            else:
+                ?>
+                <a href="/post/?page=<?php echo $page ?>"><?php echo $page ?></a>
+            <?php
+            endif;
+        endforeach;
+
+        /* SETA > */
         if (isset($this->next)) {
             ?>
             <a href="<?php echo $this->url(array('page' => $this->next)) ?>"> > </a>
-            <?
+            <?php
         };
+        
+        /* ULTIMA PAGINA */
         if (isset($this->next)) {
             ?>
             <a href="<?php echo $this->url(array('page' => $this->last)) ?>"> Última </a>
-        <? }; ?>
+        <?php }; ?>
     </div>
-<? }
-?>
+<?php }; ?>
