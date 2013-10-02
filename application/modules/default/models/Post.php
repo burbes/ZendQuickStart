@@ -1,9 +1,13 @@
 <?php
 
-class Application_Model_Post extends Zend_Db_Table_Abstract {
+/* 
+ * após mover as pastas controller, forms, models, views, foi preciso renomear
+ * de Application_Model_Post  para Default_Model_Post 
+ *  */
+class Default_Model_Post extends Zend_Db_Table_Abstract {
 
     protected $_name = 'tbl_post';
-    protected $_dependentTables = Array('Application_Model_AssocTags');
+    protected $_dependentTables = Array('Default_Model_AssocTags');
 
     public function busca($id) {
         try {

@@ -1,11 +1,15 @@
 <?php
 
-class Application_Model_Usuario extends Zend_Db_Table /* extensão do db */ {
+        /*
+         * após mover as pastas controller, forms, models, views, foi preciso renomear
+         * de Application_Model_Usuario  para Default_Model_Usuario 
+         *  */
+class Default_Model_Usuario extends Zend_Db_Table /* extensão do db */ {
 
     protected $_name = 'tb_usuario';
     protected $_fkname = 'tb_contato';
     protected $_primary = 'id';
-    protected $_dependentTables = Array('Application_Model_Contato');
+    protected $_dependentTables = Array('Default_Model_Contato');
     
 
     public function listar($id = null) {

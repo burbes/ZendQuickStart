@@ -78,20 +78,26 @@ class IndexController extends Zend_Controller_Action {
 
         /* instancia o model Usuario */
         
-         $usuario = new Application_Model_Usuario();
+        
+        /*
+         * após mover as pastas controller, forms, models, views, foi preciso renomear
+         * de Application_Model_Usuario  para Default_Model_Usuario 
+         *  */
+         /*$usuario = new Application_Model_Usuario(); */
+         $usuario = new Default_Model_Usuario;
         /* retorna apenas 1 registro */
         //$usuario->fetchAll('id=3')->current();
         /* 
          $find = $usuario->find(3)->current();
          $contato = $find->findDependentRowset('Application_Model_Contato');
          */
-        $model = new Application_Model_Contato();
+        $model = new Default_Model_Contato();
         $contato = $model->find(1);
-        $find = $contato->current()->findParentRow('Application_Model_Usuario');
+        $find = $contato->current()->findParentRow('Default_Model_Usuario');
         
-        $postModel = new Application_Model_Post();
+        $postModel = new Default_Model_Post();
         $post = $postModel->find(1)->current();
-        $tags = $post->findManyToManyRowset('Application_Model_Tags','Application_Model_AssocTags');
+        $tags = $post->findManyToManyRowset('Default_Model_Tags','Default_Model_AssocTags');
         
         
         $this->view->contato = $contato;

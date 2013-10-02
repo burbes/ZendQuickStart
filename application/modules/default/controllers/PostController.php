@@ -10,12 +10,19 @@ class PostController extends Zend_Controller_Action {
         // action body
 
         /* PAGINAÇÃO */
-        
+
         /* melhor fazer  isso nos model isso */
-        $post = new Application_Model_Post;
+        //$post = new Application_Model_Post;
+
+        /*
+         * após mover as pastas controller, forms, models, views, foi preciso renomear
+         * de Application_Model_Post  para Default_Model_Post 
+         *  */
+        $post = new Default_Model_Post;
+
         $select = $post->select()->order('id Desc');
         /* fim - melhor fazer isso nos model isso */
-        
+
         /* array de 1 a 100 */
         //$data = range(1, 100);
 
@@ -24,41 +31,37 @@ class PostController extends Zend_Controller_Action {
 
         /* 1 forma de instanciar  - instancia */
         //$paginator = new Zend_Paginator($adapter);
-        
+
         /* 2 forma de instanciar - não precisa de adaptador */
-        $paginator = Zend_Paginator::factory($select   /*ou  $data */);
-        
-        /* 
+        $paginator = Zend_Paginator::factory($select /* ou  $data */);
+
+        /*
          * determina uma variavel p/ diferenciar as paginas
          * CONTROLER/?page=5
          *  */
         $paginator->setCurrentPageNumber($this->_getParam('page'));
-        
+
         /* qtde de itens por pagina */
         $paginator->setItemCountPerPage(2);
-        
+
         /* qtde de paginas que poderão ser clicadas */
         $paginator->setPageRange(5);
-        
+
         /* estilo de rolamento */
         $paginator->setDefaultScrollingStyle('Elastic');
-        
+
         /* determina o arquivo default de paginação */
         Zend_View_Helper_PaginationControl::setDefaultViewPartial('paginator_control.phtml');
 
         /*  exibe na view */
         $this->view->paginator = $paginator;
-        
-        
-        
-        
     }
 
     /* FUNÇÃO P/ ADICIONAR UM POST NO BANCO */
 
     public function addAction() {
-        $form = new Application_Form_Post();
-        $model = new Application_Model_Post;
+        $form = new Default_Form_Post();
+        $model = new Default_Model_Post;
 
         /* GET POST SERVE P/ PEGAR OS VALORES DO SUBMIT */
         //var_dump($this->_request->getPost());

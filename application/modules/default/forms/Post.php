@@ -1,6 +1,10 @@
 <?php
 
-class Application_Form_Post extends Zend_Form {
+/* 
+ * após mover as pastas controller, forms, models, views, foi preciso renomear
+ * de Application_Model_Post  para Default_Model_Post 
+ *  */
+class Default_Form_Post extends Zend_Form {
 
     public function init() {
         /* Form Elements & Other Definitions Here ... */
