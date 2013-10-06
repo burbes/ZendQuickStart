@@ -13,14 +13,14 @@ class Default_Form_Login extends Zend_Form {
         $this->addElement('text', 'login', array(
             'label' => 'Login',
             'required' => true,
-            'filter' => array('StringTrim')
+            'filters' => array('StringTrim')
         ));
         
         //campo senha
         $this->addElement('password', 'senha', array(
             'label' => 'Senha',
             'required' => true,
-            'filter' => array('StringTrim')
+            'filters' => array('StringTrim')
         ));
         
         $this->addElement('submit','Logar');

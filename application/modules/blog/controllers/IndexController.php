@@ -8,6 +8,10 @@ class Blog_IndexController extends Zend_Controller_Action {
 
     public function indexAction() {
         
+        $auth = Zend_Auth::getInstance();
+        var_dump($auth->getStorage()->read());
+        die();
+        
         /* instancia o modulo */
         $blog = new Blog_Model_Blog;
         

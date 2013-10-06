@@ -2,7 +2,7 @@
 
 //use Application_Model_Usuario;
 
-class IndexController extends Zend_Controller_Action {
+class default_IndexController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
@@ -71,7 +71,7 @@ class IndexController extends Zend_Controller_Action {
 
         /*         * ********************************************************************************** */
         /* RETORNA UM OBJ AO INVÉS DE UM ARRAY */
-        $db->setFetchMode(Zend_Db::FETCH_OBJ);
+        //$db->setFetchMode(Zend_Db::FETCH_OBJ);
 
         /* fazendo consulta (exemplo repitido) */
         //$rows = $db->fetchAll('select * from tb_usuario');

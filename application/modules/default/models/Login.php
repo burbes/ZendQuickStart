@@ -8,7 +8,11 @@ class Default_Model_Login {
         $db = Zend_Db_Table::getDefaultAdapter();
 
         //1 FORMA
-        $adapter = new Zend_Auth_Adapter_DbTable($db, 'tb_usuario', 'email', 'senha'/* ,'MD5(?)' */
+        $adapter = new Zend_Auth_Adapter_DbTable($db, 
+                'tb_usuario', 
+                'email', 
+                'senha'
+                /* , 'SHA1(?)' ou 'MD5(?)' */
         );
         //2 FORMA
         /* $adapter = new Zend_Auth_Adapter_DbTable($db);
@@ -18,17 +22,28 @@ class Default_Model_Login {
           ->setTableName('tb_usuario');
          */
 
-        $select = $adapter->getDbSelect();
-        $select->where("acesso", "Y");
+        $select = $adapter->getDbSelect();//->where('acesso = "Y"');
+        $select->where("acesso= 'Y'");
         $adapter->setIdentity($login);
         $adapter->setCredential($senha);
 
-        //singleton
+        //metodo singleton
         $auth = Zend_Auth::getInstance();
 
         $result = $auth->authenticate($adapter);
+        var_dump($auth);
+        die;
 
         if ($result->isValid()) {
+            /* todos os dados da tabela */
+            //$data = $adapter->getResultRowObject(array('nome','email','id'));
+            $data = $adapter->getResultRowObject(null,'senha'); /* só não retorna o campo senha */
+            
+            /* abre sessão e insere os dados */
+            $auth->getStorage()->write($data);
+            
+            var_dump($data);
+            die;
             return true;
         } else {
             return $model->getMessages($result);
@@ -37,13 +52,13 @@ class Default_Model_Login {
 
     public function getMessages(Zend_Auth_Result $result) {
         switch ($result->getCode()) {
-            case $result::FAILUE_IDENTITY_NOT_FOUND:
+            case $result::FAILURE_IDENTITY_NOT_FOUND:
                 $msg = "Login não encontrado";
                 break;
-            case $result::FAILUE_IDENTITY_AMBIGUOUS:
+            case $result::FAILURE_IDENTITY_AMBIGUOUS:
                 $msg = "Login em duplicidade";
                 break;
-            case $result::FAILUE_CREDENTIAL_INVALID:
+            case $result::FAILURE_CREDENTIAL_INVALID:
                 $msg = "Login não corresponde";
                 break;
 
