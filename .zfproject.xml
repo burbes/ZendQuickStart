@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <projectProfile type="default" version="1.12.3">
-  <projectDirectory>
+
+  <projectDirectory>  
     <projectProfileFile filesystemName=".zfproject.xml"/>
+	
     <applicationDirectory classNamePrefix="Application_">
+	
       <configsDirectory>
         <applicationConfigFile type="ini"/>
       </configsDirectory>
+	  
       <controllersDirectory>
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
@@ -20,6 +24,7 @@
           <actionMethod actionName="add"/>
         </controllerFile>
       </controllersDirectory>
+	  
       <formsDirectory>
         <formFile formName="Post"/>
       </formsDirectory>
@@ -35,6 +40,7 @@
         <modelFile modelName="Tags"/>
         <modelFile modelName="AssocTags"/>
       </modelsDirectory>
+	  
       <modulesDirectory>
         <moduleDirectory moduleName="blog">
           <configsDirectory enabled="false"/>
@@ -67,6 +73,7 @@
           </viewsDirectory>
         </moduleDirectory>
       </modulesDirectory>
+	  
       <servicesDirectory enabled="false"/>
       <viewsDirectory>
         <viewScriptsDirectory>
@@ -92,8 +99,11 @@
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
       </viewsDirectory>
+	  
       <bootstrapFile filesystemName="Bootstrap.php"/>
+	  
     </applicationDirectory>
+	
     <dataDirectory enabled="false">
       <cacheDirectory enabled="false"/>
       <searchIndexesDirectory enabled="false"/>

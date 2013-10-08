@@ -4,8 +4,32 @@ class Default_PostController extends Zend_Controller_Action {
 
     public function init() {
         /* Initialize action controller here */
+        $acl = new Zend_Acl();
+        $visitante = new Zend_Acl_Role('visitante');
+        $acl->addRole($visitante)
+                //->addRole(new Zend_Acl_Role('editor'),'visitante') 
+                ->addRole(new Zend_Acl_Role('admin'), 'visitante') /* tudo que é de visitante tbm é de admin */
+                ->add(new Zend_Acl_Resource('index')) /* acao */
+                ->add(new Zend_Acl_Resource('add')) /* acao */
+                ->allow('visitante', array('index'/*,'ver'*/)) /* define quais os recursos (actions) permitidos p/ o visitante */
+                ->allow('admin', 'add') /* não precisava fazer isso pq ele já herdou ali em cima */
+                //->deny('editor','add')
+                ;
+
+        /* pega o nome da action automaticamente */
+        $action = $this->_request->getActionName();
+        
+        if ($acl->isAllowed('admin', $action)) {
+            echo 'Sim, o visitante tem acesso';
+        }
+        else
+            echo 'Não, o visitante não tem acesso';
     }
 
+    public function verAction() {
+        
+    }
+    
     public function indexAction() {
         // action body
 
