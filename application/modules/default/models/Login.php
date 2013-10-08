@@ -12,6 +12,7 @@ class Default_Model_Login {
                 'tb_usuario', 
                 'email', 
                 'senha'
+                /*,'SHA1(?)'*/
                 /* , 'SHA1(?)' ou 'MD5(?)' */
         );
         //2 FORMA
@@ -23,7 +24,7 @@ class Default_Model_Login {
          */
 
         $select = $adapter->getDbSelect();//->where('acesso = "Y"');
-        $select->where("acesso= 'Y'");
+        $select->where('acesso = "Y"');
         $adapter->setIdentity($login);
         $adapter->setCredential($senha);
 
@@ -31,8 +32,8 @@ class Default_Model_Login {
         $auth = Zend_Auth::getInstance();
 
         $result = $auth->authenticate($adapter);
-        var_dump($auth);
-        die;
+        //var_dump($select);
+        //die;
 
         if ($result->isValid()) {
             /* todos os dados da tabela */
@@ -42,8 +43,8 @@ class Default_Model_Login {
             /* abre sessão e insere os dados */
             $auth->getStorage()->write($data);
             
-            var_dump($data);
-            die;
+            //var_dump($data);
+            //die;
             return true;
         } else {
             return $model->getMessages($result);

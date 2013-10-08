@@ -24,7 +24,11 @@
         <!-- TITULO PROJETO -->
         <h1>Projeto Zend FrameWork</h1>
 
-        <?php echo $this->layout()->content; /* CONTEUDO DO SITE */ ?>
+        <!-- MSG DE RETORNO (DE ERRO) -->
+        <?php echo $this->flashMessenger(); ?>
+
+        <!-- CONTEUDO DO SITE -->
+        <?php echo $this->layout()->content; ?>
 
         <!-- RODAPÉ DO SITE -->
         <div id="rodape">
